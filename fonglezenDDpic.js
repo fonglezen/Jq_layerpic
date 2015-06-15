@@ -65,8 +65,21 @@
 					flzpic.fonglezen_ddpic.append('<li>'+ firstLI +'</li>');
 
 				},500);
+			},
+			init:function(){
+				//如果图片数量不超过五张,复制当前已有的照片，并追加到最后
+				if(this.flz_dplen < 5){
+					var addPics = '';
+					for(var a = 0; a < flzpic.flz_dplen; a++){
+						addPics = addPics + '<li>'+flzpic.flz_dpli.eq(a).html()+'</li>';
+					}
+					flzpic.flz_dpli.eq(4).addClass('goimg');
+					flzpic.fonglezen_ddpic.append(addPics);
+				}
 			}
 		};
+
+		flzpic.init();
 
 		flzpic.fonglezen_ddpic.on(actions.touchStart(),'li',function(e){
 			var e=e || window.event;
